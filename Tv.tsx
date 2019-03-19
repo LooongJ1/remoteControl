@@ -1,8 +1,48 @@
 import React from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, Image, ListView,TouchableOpacity } from "react-native";
 import { Button } from "@ant-design/react-native/lib";
+import { any } from "prop-types";
+const Tvdata = require("./Tvdata.json");
 
 class Tv extends React.Component {
+  public tvs = [];
+  
+  public dataBlob = {};
+  
+  public sectionIDs = [];
+
+  public rowIDs = [];
+
+  public jsonData = Tvdata.data;
+  
+  public dataSource = any;
+
+  public state = {
+    dataSource : any
+  }
+
+  public setState(dataSource){
+    this.dataSource = dataSource
+  }
+
+  getInitialState() {
+    const getSelectionData = (dataBlob, sectionID) => {
+      return dataBlob[sectionID];
+    };
+
+    const getRowData = (dataBlob, sectionID, rowID) => {
+      return dataBlob[sectionID + ":" + rowID];
+    };
+    return {
+      dataSource: new ListView.DataSource({
+        getSectionData: getSelectionData,
+        getRowData: getRowData,
+        rowHasChanged: (r1, r2) => r1 != r2,
+        sectionHeaderHasChanged: (s1, s2) => s1 != s2
+      })
+    };
+  }
+
   constructor(props) {
     super(props);
   }
@@ -23,25 +63,66 @@ class Tv extends React.Component {
     },
     text2: {
       fontSize: 15
+    },
+    rowImageStyle:{
+      width:70,
+      height:70
     }
   });
+
+  componentDidMount(){
+    this.loadDataFromJson();
+  }
+
+  loadDataFromJson(){
+    for (let l = 0; l<this.jsonData.lenth; l++) {
+      this.sectionIDs.push(l);
+      this.dataBlob[l] = this.jsonData[l].title;
+      this.tvs = this.jsonData[l].tv; 
+      this.rowIDs[l] = [];
+      for (let i = 0 ; i<this.tvs.length;i++){
+        this.rowIDs[l].push(i);
+        this.dataBlob[l+':'+i] = this.tvs[i];
+      }
+    }
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRowsAndSections(this.dataBlob,this.sectionIDs,this.rowIDs)
+    });
+  }
   render() {
     return (
       <View style={this.styles.view1}>
         <Text style={this.styles.text1}>请选择电视品牌</Text>
         <View style={this.styles.view2}>
-          <FlatList
-            // ItemSeparatorComponent={true}
-            data={[{ key: "a", title: "三星" }, { key: "b", title: "海信" },{ key: "b", title: "飞利浦" },{ key: "b", title: "海信" },{ key: "b", title: "LG" },{ key: "b", title: "酷开" },{ key: "b", title: "夏普" },{ key: "b", title: "TCL" },{ key: "b", title: "创维" },{ key: "b", title: "索尼" },{ key: "b", title: "乐视" },{ key: "b", title: "聚力/PPTV"},{ key: "b", title: "海尔" },{ key: "b", title: "清华同方" },{ key: "b", title: "东芝" },{ key: "b", title: "松下" },{ key: "b", title: "AOC" },{ key: "b", title: "联想" },{ key: "b", title: "熊猫" },{ key: "b", title: "苹果" },{ key: "b", title: "康佳" },{ key: "b", title: "JVC" },{ key: "b", title: "夏新" },{ key: "b", title: "现代" },{ key: "b", title: "努比亚" },{ key: "b", title: "富可视" },{ key: "b", title: "HKC" },{ key: "b", title: "创维" }]}
-            renderItem={({ item }) => (
-            <View>
-              <Text style={this.styles.text2}>{item.title}</Text>
-            </View>
-            )}
+          <ListView 
+            dataSource={this.state.dataSource} 
+            renderRow={this.renderRow}
+            renderSectionHeader={this.renderSectionHeader}
           />
         </View>
       </View>
     );
+  } 
+
+  //每一行的数据
+  renderRow(rowData){
+    return(
+      <TouchableOpacity activeOpacity={0.5}>
+        <View style={this.styles.rowStyle}>
+          <Image source={{uri: rowData.icon}} style={this.styles.rowImageStyle}/>
+          <Text>{rowData.name}</Text>
+        </View>
+      </TouchableOpacity>
+    )
+  }
+
+  //每一组的数据
+  renderSectionHeader(sectionData,sectionID){
+    return(
+      <View>
+        <Text>{sectionData}</Text>
+      </View>
+    )
   }
 }
 // AppRegistry.registerComponent('HelloWorldApp', () => HelloWorldApp);
