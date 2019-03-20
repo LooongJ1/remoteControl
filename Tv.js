@@ -1,10 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import { View, Text, StyleSheet, Image, ListView,TouchableOpacity } from "react-native";
-import { Button } from "@ant-design/react-native/lib";
-import { any } from "prop-types";
 const Tvdata = require("./Tvdata.json");
 
-class Tv extends React.Component {
+class Tv extends Component<any, any> {
+
   public tvs = [];
   
   public dataBlob = {};
@@ -14,37 +13,27 @@ class Tv extends React.Component {
   public rowIDs = [];
 
   public jsonData = Tvdata.data;
-  
-  public dataSource = any;
 
-  public state = {
-    dataSource : any
-  }
+  public getSelectionData = (dataBlob, sectionID) => {
+    return dataBlob[sectionID];
+  };
 
-  public setState(dataSource){
-    this.dataSource = dataSource
-  }
+  public getRowData = (dataBlob, sectionID, rowID) => {
+    return dataBlob[sectionID + ":" + rowID];
+  };
 
-  getInitialState() {
-    const getSelectionData = (dataBlob, sectionID) => {
-      return dataBlob[sectionID];
-    };
+  public ds = new ListView.DataSource({
+    getSectionData: this.getSelectionData,
+    getRowData: this.getRowData,
+    rowHasChanged: (r1, r2) => r1 != r2,
+    sectionHeaderHasChanged: (s1, s2) => s1 != s2
+  })
 
-    const getRowData = (dataBlob, sectionID, rowID) => {
-      return dataBlob[sectionID + ":" + rowID];
-    };
-    return {
-      dataSource: new ListView.DataSource({
-        getSectionData: getSelectionData,
-        getRowData: getRowData,
-        rowHasChanged: (r1, r2) => r1 != r2,
-        sectionHeaderHasChanged: (s1, s2) => s1 != s2
-      })
-    };
-  }
+  public dataSource:any;
 
   constructor(props) {
     super(props);
+    this.state.dataSource = this.ds;
   }
 
   public styles = StyleSheet.create({
