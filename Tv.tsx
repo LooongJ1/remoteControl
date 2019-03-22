@@ -1,0 +1,143 @@
+import React from "react";
+import { AppRegistry, View, Text, SectionList } from "react-native";
+
+class Tv extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
+
+    _renderItem = info => {
+        var txt = "  " + info.item.title;
+        return (
+        <Text
+            style={{
+            height: 60,
+            textAlignVertical: "center",
+            backgroundColor: "#ffffff",
+            color: "#5C5C5C",
+            fontSize: 15
+            }}
+        >
+            {txt}
+        </Text>
+        );
+    };
+
+    _sectionComp = info => {
+        var txt = info.section.key;
+        return (
+        <Text
+            style={{
+            height: 20,
+            textAlign: "center",
+            textAlignVertical: "center",
+            backgroundColor: "#87CEFF",
+            color: "white",
+            fontSize: 15
+            }}
+        >
+            {txt}
+        </Text>
+        );
+    };
+
+    render() {
+        var sections = [
+        { key: "A", data: [{ title: "AOC", icon: "" }] },
+        { key: "B", data: [{ title: "", icon: "" }] },
+        { key: "C", data: [{ title: "创维", icon: "" }] },
+        { key: "D", data: [{ title: "东芝", icon: "" }] },
+        { key: "E", data: [{ title: "", icon: "" }] },
+        {
+            key: "F",
+            data: [{ title: "飞利浦", icon: "" }, { title: "富可视", icon: "" }]
+        },
+        { key: "G", data: [{ title: "", icon: "" }] },
+        {
+            key: "H",
+            data: [
+            { title: "HKC", icon: "" },
+            { title: "海信", icon: "" },
+            { title: "海尔", icon: "" }
+            ]
+        },
+        { key: "I", data: [{ title: "", icon: "" }] },
+        {
+            key: "J",
+            data: [{ title: "JVC", icon: "" }, { title: "聚力", icon: "" }]
+        },
+        {
+            key: "K",
+            data: [{ title: "酷开", icon: "" }, { title: "康佳", icon: "" }]
+        },
+        {
+            key: "L",
+            data: [
+            { title: "LG", icon: "" },
+            { title: "乐视", icon: "" },
+            { title: "联想", icon: "" }
+            ]
+        },
+        { key: "M", data: [{ title: "", icon: "" }] },
+        { key: "N", data: [{ title: "努比亚", icon: "" }] },
+        { key: "O", data: [{ title: "", icon: "" }] },
+        {
+            key: "P",
+            data: [{ title: "PPTV", icon: "" }, { title: "苹果", icon: "" }]
+        },
+        { key: "Q", data: [{ title: "清华同方", icon: "" }] },
+        { key: "R", data: [{ title: "", icon: "" }] },
+        {
+            key: "S",
+            data: [
+            { title: "三星", icon: "" },
+            { title: "索尼", icon: "" },
+            { title: "松下", icon: "" }
+            ]
+        },
+        { key: "T", data: [{ title: "TCL", icon: "" }] },
+        { key: "U", data: [{ title: "", icon: "" }] },
+        { key: "V", data: [{ title: "", icon: "" }] },
+        { key: "W", data: [{ title: "", icon: "" }] },
+        {
+            key: "X",
+            data: [
+            { title: "夏普", icon: "" },
+            { title: "夏新", icon: "" },
+            { title: "熊猫", icon: "" },
+            { title: "现代", icon: "" }
+            ]
+        },
+        { key: "Y", data: [{ title: "", icon: "" }] },
+        { key: "Z", data: [{ title: "", icon: "" }] }
+        ];
+
+        return (
+        <View style={{ flex: 1 }}>
+            <SectionList
+                renderSectionHeader={this._sectionComp}
+                renderItem={this._renderItem}
+            sections={sections}
+            ItemSeparatorComponent={() => (
+                <View style={{ height: 1, backgroundColor: "#CFCFCF" }} />
+            )}
+            ListHeaderComponent={() => (
+                <View
+                style={{
+                    backgroundColor: "#00BFFF",
+                    alignItems: "center",
+                    height: 30
+                }}
+                >
+                <Text style={{ fontSize: 18, color: "#ffffff" }}>电视品牌</Text>
+                </View>
+            )}
+            />
+        </View>
+        );
+    }
+}
+
+// AppRegistry.registerComponent('App', () => HomeScreen);
+export default Tv;

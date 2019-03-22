@@ -8,26 +8,12 @@ class HelloWorldApp extends React.Component {
     super(props);
   }
 
-  public styles = StyleSheet.create({
-    view1:{
-      flexDirection:'column',
-      alignItems:'center',
-      flex:1
-    },
-    text:{
-      fontSize:20,
-    },
-    view2:{
-      justifyContent:'space-around',
-      flex:1,
-      // backgroundColor:"#3399cc"
-    }
-  })
+
   render() {
     return (
-      <View style={this.styles.view1}>
-        <Text style={this.styles.text}>请选择所需要控制的物品</Text>
-        <View style={this.styles.view2}>
+      <View style={styles.view1}>
+        <Text style={styles.text}>请选择所需要控制的物品</Text>
+        <View style={styles.view2}>
           <Button type='primary' onPress={() => Tv}>电视</Button>
           <Button type='primary'>空调</Button>
         </View>
@@ -36,5 +22,21 @@ class HelloWorldApp extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  view1:{
+    flexDirection:'column',
+    alignItems:'center',
+    flex:1
+  },
+  text:{
+    fontSize:20,
+  },
+  view2:{
+    justifyContent:'space-around',
+    flex:1,
+    // backgroundColor:"#3399cc"
+  }
+})
 // AppRegistry.registerComponent('HelloWorldApp', () => HelloWorldApp);
 export default HelloWorldApp;
