@@ -1,5 +1,5 @@
 import React from "react";
-import { AppRegistry, View, Text, SectionList,TouchableOpacity } from "react-native";
+import { AppRegistry, View, Text, SectionList,TouchableOpacity,Image } from "react-native";
 
 class Tv extends React.Component {
 
@@ -9,11 +9,13 @@ class Tv extends React.Component {
 
     _renderItem = info => {
         var txt = "  " + info.item.title;
+        var icon = "  " + info.item.icon;
         return (
         <TouchableOpacity activeOpacity={0.5}>
+            <Image source={{uri:icon}}/>
             <Text
                 style={{
-                height: 60,
+                height: 80,
                 textAlignVertical: "center",
                 backgroundColor: "#ffffff",
                 color: "#5C5C5C",
@@ -27,15 +29,15 @@ class Tv extends React.Component {
     };
 
     _sectionComp = info => {
-        var headtxt = info.section.key;
+        var headtxt = "  " + info.section.key;
         return (
         <Text
             style={{
             height: 20,
-            textAlign: "center",
+            // textAlign: "center",
             textAlignVertical: "center",
-            backgroundColor: "#87CEFF",
-            color: "white",
+            backgroundColor: "#CFCFCF",
+            color: "#1C1C1C",
             fontSize: 15
             }}
         >
@@ -119,7 +121,11 @@ class Tv extends React.Component {
         ];
 
         return (
-        <View style={{ flex: 1 }}>
+        <View style={{ 
+            flex: 1 ,                            
+            height: 33
+            }}>
+            <Text style={{ fontSize: 23, color: "#1C1C1C",textAlign:'center' }}>电视品牌</Text>
             <SectionList
                 renderSectionHeader={this._sectionComp}
                 renderItem={this._renderItem}
@@ -127,17 +133,6 @@ class Tv extends React.Component {
                 keyExtractor={this._keyExtractor}
                 ItemSeparatorComponent={() => (
                     <View style={{ height: 1, backgroundColor: "#CFCFCF" }} />
-                )}
-                ListHeaderComponent={() => (
-                    <View
-                        style={{
-                            backgroundColor: "#00BFFF",
-                            alignItems: "center",
-                            height: 30
-                        }}
-                    >
-                    <Text style={{ fontSize: 18, color: "#ffffff" }}>电视品牌</Text>
-                    </View>
                 )}
             />
         </View>
