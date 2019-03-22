@@ -1,5 +1,5 @@
 import React from "react";
-import { AppRegistry, View, Text, SectionList } from "react-native";
+import { AppRegistry, View, Text, SectionList,TouchableOpacity } from "react-native";
 
 class Tv extends React.Component {
 
@@ -10,22 +10,24 @@ class Tv extends React.Component {
     _renderItem = info => {
         var txt = "  " + info.item.title;
         return (
-        <Text
-            style={{
-            height: 60,
-            textAlignVertical: "center",
-            backgroundColor: "#ffffff",
-            color: "#5C5C5C",
-            fontSize: 15
-            }}
-        >
-            {txt}
-        </Text>
+        <TouchableOpacity activeOpacity={0.5}>
+            <Text
+                style={{
+                height: 60,
+                textAlignVertical: "center",
+                backgroundColor: "#ffffff",
+                color: "#5C5C5C",
+                fontSize: 15
+                }}
+            >
+                {txt}
+            </Text>
+        </TouchableOpacity>
         );
     };
 
     _sectionComp = info => {
-        var txt = info.section.key;
+        var headtxt = info.section.key;
         return (
         <Text
             style={{
@@ -37,21 +39,23 @@ class Tv extends React.Component {
             fontSize: 15
             }}
         >
-            {txt}
+            {headtxt}
         </Text>
         );
     };
 
+    _keyExtractor = (item, index) => index;
+
     render() {
         var sections = [
-        { key: "A", data: [{ title: "AOC", icon: "" }] },
-        { key: "B", data: [{ title: "", icon: "" }] },
-        { key: "C", data: [{ title: "创维", icon: "" }] },
+        { key: "A", data: [{ title: "AOC", icon: "" },{title:'艾洛维',icon:''}] },
+        { key: "B", data: [{ title: "暴风TV", icon: "" }] },
+        { key: "C", data: [{ title: "创维", icon: "" },{ title: "创佳", icon: "" },{ title: "长虹", icon: "" }] },
         { key: "D", data: [{ title: "东芝", icon: "" }] },
         { key: "E", data: [{ title: "", icon: "" }] },
         {
             key: "F",
-            data: [{ title: "飞利浦", icon: "" }, { title: "富可视", icon: "" }]
+            data: [{ title: "风行", icon: "" }, { title: "富可视", icon: "" }, { title: "飞利浦", icon: "" }]
         },
         { key: "G", data: [{ title: "", icon: "" }] },
         {
@@ -65,7 +69,7 @@ class Tv extends React.Component {
         { key: "I", data: [{ title: "", icon: "" }] },
         {
             key: "J",
-            data: [{ title: "JVC", icon: "" }, { title: "聚力", icon: "" }]
+            data: [{ title: "JVC", icon: "" }, { title: "聚力", icon: "" },{title:'京东方',icon:''}]
         },
         {
             key: "K",
@@ -76,7 +80,8 @@ class Tv extends React.Component {
             data: [
             { title: "LG", icon: "" },
             { title: "乐视", icon: "" },
-            { title: "联想", icon: "" }
+            { title: "联想", icon: "" },
+            { title: "雷鸟", icon: "" }
             ]
         },
         { key: "M", data: [{ title: "", icon: "" }] },
@@ -99,7 +104,7 @@ class Tv extends React.Component {
         { key: "T", data: [{ title: "TCL", icon: "" }] },
         { key: "U", data: [{ title: "", icon: "" }] },
         { key: "V", data: [{ title: "", icon: "" }] },
-        { key: "W", data: [{ title: "", icon: "" }] },
+        { key: "W", data: [{ title: "微鲸", icon: "" }] },
         {
             key: "X",
             data: [
@@ -118,21 +123,22 @@ class Tv extends React.Component {
             <SectionList
                 renderSectionHeader={this._sectionComp}
                 renderItem={this._renderItem}
-            sections={sections}
-            ItemSeparatorComponent={() => (
-                <View style={{ height: 1, backgroundColor: "#CFCFCF" }} />
-            )}
-            ListHeaderComponent={() => (
-                <View
-                style={{
-                    backgroundColor: "#00BFFF",
-                    alignItems: "center",
-                    height: 30
-                }}
-                >
-                <Text style={{ fontSize: 18, color: "#ffffff" }}>电视品牌</Text>
-                </View>
-            )}
+                sections={sections}
+                keyExtractor={this._keyExtractor}
+                ItemSeparatorComponent={() => (
+                    <View style={{ height: 1, backgroundColor: "#CFCFCF" }} />
+                )}
+                ListHeaderComponent={() => (
+                    <View
+                        style={{
+                            backgroundColor: "#00BFFF",
+                            alignItems: "center",
+                            height: 30
+                        }}
+                    >
+                    <Text style={{ fontSize: 18, color: "#ffffff" }}>电视品牌</Text>
+                    </View>
+                )}
             />
         </View>
         );
