@@ -1,6 +1,7 @@
 import React from "react";
 import { AppRegistry, View, Text, SectionList,TouchableOpacity,Image } from "react-native";
 import Tvdata from './Tvdata'
+import img_tv from './img_tv'
 
 class Tv extends React.Component {
 
@@ -9,14 +10,14 @@ class Tv extends React.Component {
     }
 
     _renderItem = info => {
-        var txt = "  " + info.item.title;
-        var icon = "  " + info.item.icon;
+        var txt =info.item.title;
+        // var icon = info.item.icon
         return (
-        <TouchableOpacity activeOpacity={0.5}>
-            <Image source={{uri:icon}}/>
+        <TouchableOpacity activeOpacity={0.5} style={{flexDirection:'row'}}>
+            <Image style={{width:130,height:60}} source={img_tv['png'+txt]}/>
             <Text
                 style={{
-                height: 80,
+                height: 50, 
                 textAlignVertical: "center",
                 backgroundColor: "#ffffff",
                 color: "#5C5C5C",
