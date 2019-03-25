@@ -1,16 +1,12 @@
 import React from "react";
 import { AppRegistry, View, Text, SectionList,TouchableOpacity,Image } from "react-native";
-import Tvdata from './Tvdata'
+import Airdata from './Airdata'
 import img from './img'
 
-class Tv extends React.Component {
+class Air extends React.Component {
 
     constructor(props) {
         super(props);
-    }
-
-    static navigationOptions = {
-        headerTitle:'Tv'
     }
 
     _renderItem = info => {
@@ -60,11 +56,11 @@ class Tv extends React.Component {
             flex: 1 ,                            
             height: 33
             }}>
-            <Text style={{ fontSize: 23, color: "#1C1C1C",textAlign:'center' }}>电视品牌</Text>
+            <Text style={{ fontSize: 23, color: "#1C1C1C",textAlign:'center' }}>空调品牌</Text>
             <SectionList
                 renderSectionHeader={this._sectionComp}
                 renderItem={this._renderItem}
-                sections={Tvdata.sections}
+                sections={Airdata.sections}
                 keyExtractor={this._keyExtractor}
                 ItemSeparatorComponent={() => (
                     <View style={{ height: 1, backgroundColor: "#CFCFCF" }} />
@@ -76,4 +72,4 @@ class Tv extends React.Component {
 }
 
 // AppRegistry.registerComponent('App', () => HomeScreen);
-export default Tv;
+export default Air;

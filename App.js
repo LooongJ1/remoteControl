@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Button } from '@ant-design/react-native/lib';
 import Tv from './Tv';
+import Air from './Air'
 
 class HelloWorldApp extends React.Component {
   constructor(props) {
@@ -14,8 +15,8 @@ class HelloWorldApp extends React.Component {
       <View style={styles.view1}>
         <Text style={styles.text}>请选择所需要控制的物品</Text>
         <View style={styles.view2}>
-          <Button type='primary' onPress={() => Tv}>电视</Button>
-          <Button type='primary'>空调</Button>
+          <Button type='primary' onPress={() => {this.props.navigation.navigate('Tv')}}>电视</Button>
+          <Button type='primary' onPress={() => {this.props.navigation.navigate('Air')}}>空调</Button>
         </View>
       </View>
 
