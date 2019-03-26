@@ -10,7 +10,7 @@ class Tv extends React.Component {
     }
 
     static navigationOptions = {
-        headerTitle:'Tv'
+        headerTitle:'电视品牌'
     }
 
     _renderItem = info => {
@@ -60,7 +60,7 @@ class Tv extends React.Component {
             flex: 1 ,                            
             height: 33
             }}>
-            <Text style={{ fontSize: 23, color: "#1C1C1C",textAlign:'center' }}>电视品牌</Text>
+            {/* <Text style={{ fontSize: 23, color: "#1C1C1C",textAlign:'center' }}>电视品牌</Text> */}
             <SectionList
                 renderSectionHeader={this._sectionComp}
                 renderItem={this._renderItem}

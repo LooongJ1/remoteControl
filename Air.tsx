@@ -9,6 +9,10 @@ class Air extends React.Component {
         super(props);
     }
 
+    static navigationOptions = {
+        headerTitle:'空调品牌'
+    }
+
     _renderItem = info => {
         var txt =info.item.title;
         // var icon = info.item.icon
@@ -56,7 +60,7 @@ class Air extends React.Component {
             flex: 1 ,                            
             height: 33
             }}>
-            <Text style={{ fontSize: 23, color: "#1C1C1C",textAlign:'center' }}>空调品牌</Text>
+            {/* <Text style={{ fontSize: 23, color: "#1C1C1C",textAlign:'center' }}>空调品牌</Text> */}
             <SectionList
                 renderSectionHeader={this._sectionComp}
                 renderItem={this._renderItem}

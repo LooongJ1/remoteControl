@@ -4,10 +4,13 @@ import { Button } from '@ant-design/react-native/lib';
 import Tv from './Tv';
 import Air from './Air'
 
-class HelloWorldApp extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
   }
+  static navigationOptions = {
+    headerTitle:'万能遥控器',
+}
 
 
   render() {
@@ -32,6 +35,7 @@ const styles = StyleSheet.create({
   },
   text:{
     fontSize:20,
+    
   },
   view2:{
     justifyContent:'space-around',
@@ -40,4 +44,4 @@ const styles = StyleSheet.create({
   }
 })
 // AppRegistry.registerComponent('HelloWorldApp', () => HelloWorldApp);
-export default HelloWorldApp;
+export default App;
