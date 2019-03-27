@@ -5,6 +5,7 @@ import Control from './control'
 import img from './img'
 
 class Air extends React.Component {
+    props: any;
 
     constructor(props) {
         super(props);

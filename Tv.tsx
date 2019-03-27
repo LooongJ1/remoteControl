@@ -18,7 +18,11 @@ class Tv extends React.Component {
         var txt =info.item.title;
         // var icon = info.item.icon
         return (
-        <TouchableOpacity activeOpacity={0.5} style={{flexDirection:'row'}} onPress={() => {this.props.navigation.navigate('Control',{title:txt,what:'电视'})}}>
+        <TouchableOpacity 
+            activeOpacity={0.5} 
+            style={{flexDirection:'row'}} 
+            onPress={() => {this.props.navigation.navigate('Control',{title:txt,what:'电视'})}}
+        >
             <Image style={{width:130,height:60}} source={img['png'+txt]}/>
             <Text
                 style={{
@@ -61,7 +65,7 @@ class Tv extends React.Component {
             flex: 1 ,                            
             height: 33
             }}>
-            {/* <Text style={{ fontSize: 23, color: "#1C1C1C",textAlign:'center' }}>电视品牌</Text> */}
+            {/* <Text style={{ fontSize: 23, color: "#1C1C1C",textAlign:'center' }}>空调品牌</Text> */}
             <SectionList
                 renderSectionHeader={this._sectionComp}
                 renderItem={this._renderItem}
