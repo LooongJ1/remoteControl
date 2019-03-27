@@ -1,6 +1,7 @@
 import React from "react";
 import { AppRegistry, View, Text, SectionList,TouchableOpacity,Image } from "react-native";
 import Airdata from './Airdata'
+import Control from './control'
 import img from './img'
 
 class Air extends React.Component {
@@ -17,7 +18,11 @@ class Air extends React.Component {
         var txt =info.item.title;
         // var icon = info.item.icon
         return (
-        <TouchableOpacity activeOpacity={0.5} style={{flexDirection:'row'}}>
+        <TouchableOpacity 
+            activeOpacity={0.5} 
+            style={{flexDirection:'row'}} 
+            onPress={() => {this.props.navigation.navigate('Control',{title:txt,what:'空调'})}}
+        >
             <Image style={{width:130,height:60}} source={img['png'+txt]}/>
             <Text
                 style={{
