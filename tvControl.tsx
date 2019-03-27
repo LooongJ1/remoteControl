@@ -36,32 +36,11 @@ class tvControl extends React.Component {
                 flexDirection: "row",
                 flex:1
                 }}>
-                <View style={{ flex:1,height:250,backgroundColor:'skyblue',flexDirection:'row' }}>
-                    {/* <Text>{title}{what}</Text> */}
-                    <TouchableOpacity 
-                    style={{flex:0.35,alignItems:'center',justifyContent: 'center'}}
-                    onPress={() => {this.setState({s: this.state.s - 1});}}
-                    >
-                        <Text style={{fontWeight:'300',fontSize:30}}>
-                            -
-                        </Text>
-                    </TouchableOpacity>
-                    <View style={{flex:1,alignItems:'center',justifyContent: 'center'}}>
-                        <Text style={{fontSize:100}}>
-                            {this.state.s}℃
-                        </Text>
-                    </View>
-                        <TouchableOpacity 
-                        style={{flex:0.35,alignItems:'center',justifyContent: 'center'}}
-                        onPress={() => {this.setState({s: this.state.s + 1});}}
-                        >
-                        <Text style={{fontWeight:'300',fontSize:30}}>
-                            +
-                        </Text>
-                    </TouchableOpacity>
+                <View style={{ flex:1,height:250,backgroundColor:'#63bbd0',flexDirection:'row' }}>
+                    
                 </View>
                 <View>
-
+                    
                 </View>
             </View>
         );

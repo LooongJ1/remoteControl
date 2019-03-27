@@ -36,7 +36,7 @@ class airControl extends React.Component {
                 flexDirection: "row",
                 flex:1
                 }}>
-                <View style={{ flex:1,height:250,backgroundColor:'skyblue',flexDirection:'row' }}>
+                <View style={{ flex:1,height:250,backgroundColor:'#63bbd0',flexDirection:'row' }}>
                     {/* <Text>{title}{what}</Text> */}
                     <TouchableOpacity 
                     style={{flex:0.35,alignItems:'center',justifyContent: 'center'}}
