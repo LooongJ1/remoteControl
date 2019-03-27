@@ -2,7 +2,8 @@ import {createStackNavigator,createAppContainer} from 'react-navigation'
 import App from './App';
 import Tv from './Tv';
 import Air from './Air';
-import Control from './control'
+import AirControl from './airControl'
+import tvControl from './tvControl'
 
 const AppJump = createStackNavigator({
     App:{
@@ -14,8 +15,11 @@ const AppJump = createStackNavigator({
     Air:{
         screen:Air
     },
-    Control:{
-        screen:Control
+    AirControl:{
+        screen:AirControl
+    },
+    TvControl:{
+        screen:tvControl
     }
 },{
     initialRouteName:'App'

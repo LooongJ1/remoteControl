@@ -3,7 +3,7 @@ import { AppRegistry, View, Text, SectionList,TouchableOpacity,Image } from "rea
 import Air from "./Air";
 
 
-class Control extends React.Component {
+class tvControl extends React.Component {
     props: { navigation: any; };
     state: any;
 
@@ -20,7 +20,6 @@ class Control extends React.Component {
 
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
- 
         return {
             title: params ? params.title + params.what : '万能遥控器'
         }
@@ -28,9 +27,9 @@ class Control extends React.Component {
 
 
     render() {
-        const { navigation } = this.props;
+        // const { navigation } = this.props;
         // const title = navigation.getParam('title');
-        const what = navigation.getParam('what');
+        // const what = navigation.getParam('what');
 
         return (
             <View style={{
@@ -69,4 +68,4 @@ class Control extends React.Component {
     }
 }
 
-export default Control;
+export default tvControl;
