@@ -1,11 +1,13 @@
 import React from "react";
-import { AppRegistry, View, Text, SectionList,TouchableOpacity,Image } from "react-native";
+import { AppRegistry, View, Text, SectionList,TouchableOpacity,Image,Dimensions,Switch } from "react-native";
 import Air from "./Air";
+const {width, height} = Dimensions.get('window');
 
 
 class tvControl extends React.Component {
     props: { navigation: any; };
     state: any;
+    
 
     constructor(props) {
         super(props);
@@ -33,14 +35,20 @@ class tvControl extends React.Component {
 
         return (
             <View style={{
-                flexDirection: "row",
                 flex:1
                 }}>
-                <View style={{ flex:1,height:250,backgroundColor:'#63bbd0',flexDirection:'row' }}>
-                    
+                <View style={{ width:width,height:250,backgroundColor:'#63bbd0',flexDirection:'row' }}>
+
                 </View>
-                <View>
-                    
+                <View style={{ width:width,height:height-250,flexDirection:'column'}}>
+                    <View style={{ width:width,height:100,flexDirection:'row',justifyContent:'center'}}>
+                        <Switch style={{ 
+                            transform: [{ scaleX: 2.5 }, { scaleY: 2.5}]
+                            }} 
+                            value={this.state.value} 
+                            onValueChange={(value) => {this.setState({value: value})}}/>
+                    </View>
+
                 </View>
             </View>
         );

@@ -1,22 +1,37 @@
 import React from "react";
-import { AppRegistry, View, Text, SectionList,TouchableOpacity,Image } from "react-native";
+import { AppRegistry, View, Text, StyleSheet,TouchableOpacity,Image,Dimensions,Switch } from "react-native";
 import Air from "./Air";
+const {width, height} = Dimensions.get('window');
 
 
 class airControl extends React.Component {
     props: { navigation: any; };
     state: any;
+    
 
     constructor(props) {
         super(props);
         this.state = {
-            s:26
+            s:26,
+            value:false,
+            // load:false
         }
     }
+
+    // componentDidUpdate(){
+    //     let i = this.state.s
+    //     if (i<16||i>32 ) {
+    //         this.setState({
+    //             load:true
+    //         })
+    //     }
+    //   }
+    
 
     // static navigationOptions = {
     //     headerTitle:'万能遥控器'
     // }
+    
 
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
@@ -26,6 +41,8 @@ class airControl extends React.Component {
     };
 
 
+
+
     render() {
         // const { navigation } = this.psrops;
         // const title = navigation.getParam('title');
@@ -33,12 +50,12 @@ class airControl extends React.Component {
 
         return (
             <View style={{
-                flexDirection: "row",
                 flex:1
                 }}>
-                <View style={{ flex:1,height:250,backgroundColor:'#63bbd0',flexDirection:'row' }}>
+                <View style={styles.viewStyle}>
                     {/* <Text>{title}{what}</Text> */}
                     <TouchableOpacity 
+                    disabled = {!this.state.value}
                     style={{flex:0.35,alignItems:'center',justifyContent: 'center'}}
                     onPress={() => {this.setState({s: this.state.s - 1});}}
                     >
@@ -51,21 +68,55 @@ class airControl extends React.Component {
                             {this.state.s}℃
                         </Text>
                     </View>
-                        <TouchableOpacity 
+                    <TouchableOpacity 
+                        disabled = {!this.state.value}
                         style={{flex:0.35,alignItems:'center',justifyContent: 'center'}}
                         onPress={() => {this.setState({s: this.state.s + 1});}}
-                        >
+                    >
                         <Text style={{fontWeight:'300',fontSize:30}}>
                             +
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <View>
-
+                <View style={{ width:width,height:height-250,flexDirection:'column'}}>
+                    <View style={{ width:width,height:70,flexDirection:'row',justifyContent:'center'}}>
+                        <Switch style={{ 
+                            transform: [{ scaleX: 2.1 }, { scaleY: 2.1}]
+                            }} 
+                            value={this.state.value} 
+                            onValueChange={(value) => {this.setState({value: value})}}/>
+                    </View>
+                    <View style={{width:width,height:100,flexDirection:'row',justifyContent:'center'}}>
+                        <TouchableOpacity style={styles.buttonStyle} disabled = {!this.state.value} onPress={() => {this.setState({s:18})}}>
+                            <Text style={{fontSize:19,textAlign:'center',color:'#fff'}}>制冷</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.buttonStyle} disabled = {!this.state.value} onPress={() => {this.setState({s:30})}}>
+                            <Text style={{fontSize:19,textAlign:'center',color:'#fff'}}>制热</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         );
     }
 }
-
+const styles = StyleSheet.create({
+    buttonStyle:{
+        margin:40,
+        alignItems:'center',
+        justifyContent:'center',
+        width: 50,
+        height:50,
+        backgroundColor:'#5e616d',
+        borderColor:'green',
+        borderStyle:'solid',
+        borderRadius:30,
+        paddingBottom:2    
+    },
+    viewStyle:{
+        width:width,
+        height:250,
+        backgroundColor:'#63bbd0',
+        flexDirection:'row'
+    }
+  })
 export default airControl;
