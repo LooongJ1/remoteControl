@@ -14,7 +14,34 @@ class airControl extends React.Component {
         this.state = {
             s:26,
             value:false,
-            // load:false
+            load:true
+        }
+    }
+
+    componentDidMount(){
+    }
+
+    getUp = () => {
+        if(this.state.s > 29){
+            this.setState({
+                load:false
+            })
+        }else{
+            this.setState({
+                s:this.state.s + 1
+            })
+        }
+    }
+
+    getOff = () => {
+        if(this.state.s < 19){
+            this.setState({
+                load:false
+            })
+        }else{
+            this.setState({
+                s:this.state.s - 1
+            })
         }
     }
 
@@ -55,9 +82,10 @@ class airControl extends React.Component {
                 <View style={styles.viewStyle}>
                     {/* <Text>{title}{what}</Text> */}
                     <TouchableOpacity 
-                    disabled = {!this.state.value}
+                    disabled = {this.state.load}
                     style={{flex:0.35,alignItems:'center',justifyContent: 'center'}}
-                    onPress={() => {this.setState({s: this.state.s - 1});}}
+                    // onPress={() => {this.setState({s: this.state.s - 1});}}
+                    onPress={this.getOff}
                     >
                         <Text style={{fontWeight:'300',fontSize:30}}>
                             -
@@ -69,9 +97,9 @@ class airControl extends React.Component {
                         </Text>
                     </View>
                     <TouchableOpacity 
-                        disabled = {!this.state.value}
+                        disabled = {this.state.load}
                         style={{flex:0.35,alignItems:'center',justifyContent: 'center'}}
-                        onPress={() => {this.setState({s: this.state.s + 1});}}
+                        onPress={this.getUp}
                     >
                         <Text style={{fontWeight:'300',fontSize:30}}>
                             +
@@ -84,7 +112,7 @@ class airControl extends React.Component {
                             transform: [{ scaleX: 2.1 }, { scaleY: 2.1}]
                             }} 
                             value={this.state.value} 
-                            onValueChange={(value) => {this.setState({value: value})}}/>
+                            onValueChange={(value) => {this.setState({value: value,load:!value})}}/>
                     </View>
                     <View style={{width:width,height:100,flexDirection:'row',justifyContent:'center'}}>
                         <TouchableOpacity style={styles.buttonStyle} disabled = {!this.state.value} onPress={() => {this.setState({s:18})}}>
