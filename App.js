@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
   view1:{
     flexDirection:'column',
     alignItems:'center',
-    flex:1
+    flex:1,
+    margin:20
   },
   text:{
     fontSize:20,
