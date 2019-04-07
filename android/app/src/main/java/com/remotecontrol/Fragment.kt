@@ -21,9 +21,7 @@ import com.gaoyu.smarttools.date.CodeCommand
 
 import android.content.Context.CONSUMER_IR_SERVICE
 
-/**
- * Created by ${高宇} on 17/6/5.
- */
+
 //需要api大于19与下面if判断用途类似
 @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 class AirConditionerFragment : Basefragment(), View.OnClickListener {
@@ -648,7 +646,7 @@ class AirConditionerFragment : Basefragment(), View.OnClickListener {
             base[50] = CodeCommand.zerodown
             base[51] = CodeCommand.zeroup
         }
-        //第六步  风向  1、上下 36 数组 74.75   2、左右 40  80.81
+        //第六步  风向  1、上下 36 数组 74.75
         when (mWindDir) {
             0 -> {
             }
@@ -659,30 +657,6 @@ class AirConditionerFragment : Basefragment(), View.OnClickListener {
             2 -> {
                 base[80] = CodeCommand.onedown
                 base[81] = CodeCommand.oneup
-            }
-        }//默认
-
-        //第七步  风量  10-13
-        when (mWindCount) {
-            0 -> {
-            }
-            1 -> {
-                base[10] = CodeCommand.onedown
-                base[11] = CodeCommand.oneup
-                base[12] = CodeCommand.zerodown
-                base[13] = CodeCommand.zeroup
-            }
-            2 -> {
-                base[10] = CodeCommand.zerodown
-                base[11] = CodeCommand.zeroup
-                base[12] = CodeCommand.onedown
-                base[13] = CodeCommand.oneup
-            }
-            3 -> {
-                base[10] = CodeCommand.onedown
-                base[11] = CodeCommand.oneup
-                base[12] = CodeCommand.onedown
-                base[13] = CodeCommand.oneup
             }
         }//默认
 
