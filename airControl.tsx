@@ -14,7 +14,8 @@ class airControl extends React.Component {
         this.state = {
             s:26,
             value:false,
-            load:true
+            load:true,
+            fx:'自动',
         }
     }
 
@@ -43,17 +44,19 @@ class airControl extends React.Component {
                 s:this.state.s - 1
             })
         }
-    }
+    }    
 
-    // componentDidUpdate(){
-    //     let i = this.state.s
-    //     if (i<16||i>32 ) {
-    //         this.setState({
-    //             load:true
-    //         })
-    //     }
-    //   }
-    
+    getFx = () => {
+        if(this.state.fx === '自动'){
+            this.setState({
+                fx:'上下',
+            })
+        }else{
+            this.setState({
+                fx:'自动'
+            })
+        }
+    }
 
     // static navigationOptions = {
     //     headerTitle:'万能遥控器'
@@ -66,9 +69,6 @@ class airControl extends React.Component {
             title: params ? params.title + params.what : '万能遥控器'
         }
     };
-
-
-
 
     render() {
         // const { navigation } = this.psrops;
@@ -95,6 +95,9 @@ class airControl extends React.Component {
                         <Text style={{fontSize:100}}>
                             {this.state.s}℃
                         </Text>
+                        <Text style={{fontSize:15}}>
+                            风向:{this.state.fx}
+                        </Text>
                     </View>
                     <TouchableOpacity 
                         disabled = {this.state.load}
@@ -120,6 +123,11 @@ class airControl extends React.Component {
                         </TouchableOpacity>
                         <TouchableOpacity style={styles.buttonStyle} disabled = {!this.state.value} onPress={() => {this.setState({s:30})}}>
                             <Text style={{fontSize:19,textAlign:'center',color:'#fff'}}>制热</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{width:width,height:100,flexDirection:'row',justifyContent:'center'}}>
+                        <TouchableOpacity style={styles.buttonStyle} disabled = {!this.state.value} onPress={this.getFx}>
+                            <Text style={{fontSize:19,textAlign:'center',color:'#fff'}}>风向</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
