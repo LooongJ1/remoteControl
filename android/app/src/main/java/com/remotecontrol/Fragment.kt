@@ -16,6 +16,8 @@ import android.widget.ImageView
 import android.widget.TextView
 
 import com.gaoyu.smarttools.R
+import com.gaoyu.smarttools.bean.tvBean
+import com.gaoyu.smarttools.bean.sweepBean
 import com.gaoyu.smarttools.bean.AirBean
 import com.gaoyu.smarttools.date.CodeCommand
 
@@ -42,6 +44,10 @@ class AirConditionerFragment : Basefragment(), View.OnClickListener {
     private var modeSupply: ImageView? = null
     private var modeHeating: ImageView? = null
     //开关、度数、模式、自动手动、风向、风量
+    private val tvBean = tvBean(0, 25, 0, 0, 0, 0)
+    //开关、度数、模式、自动手动、风向、风量
+    private val sweepBean = sweepBean(0, 25, 0, 0, 0, 0)
+    //开关、度数、模式、自动手动、风向、风量
     private val airBean = AirBean(0, 25, 0, 0, 0, 0)
 
 
@@ -63,7 +69,7 @@ class AirConditionerFragment : Basefragment(), View.OnClickListener {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             IRBack = IR!!.hasIrEmitter()
             if (!IRBack) {
-                showToast("对不起，该设备上没有红外功能!")
+                showToast("检测到手机无红外模块或为授予红外权限，功能可能无法正常使用")
             } else {
                 showToast("红外设备就绪")//可进行下一步操作
             }
@@ -142,7 +148,7 @@ class AirConditionerFragment : Basefragment(), View.OnClickListener {
      */
     @Override
     fun onClick(v: View) {
-        //五中模式
+        //五种模式
         var data: Int
         //关机状态
         if (IRBack == false) {
